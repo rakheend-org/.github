@@ -1,6 +1,6 @@
 {
-    "name": "Rakheen Tech",
-    "description": "Rakheen Tech workflow.",
+    "name": "CodeQL",
+    "description": "Rakheen Tech CodeQL workflow.",
     "iconName": "example-icon",
     "categories": [],
     "filePatterns": []
