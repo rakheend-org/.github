@@ -1,6 +1,9 @@
 name: Enforce advanced security scanning
 
 on:
+  push:
+    branches: [ main, master ]
+    
   workflow_dispatch:
   schedule:
     - cron: '25 10 * * *'
