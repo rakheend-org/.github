@@ -38,29 +38,10 @@ jobs:
         uses: github/codeql-action/init@v2
         with:
           languages: ${{ matrix.language }}
-          id: ${{ github.event.client_payload.id }}
-          callback_url: ${{ github.event.client_payload.callback_url }}
-          sha: ${{ github.event.client_payload.sha }}
-          run_id: ${{ github.run_id }}
-          name: ${{ github.workflow }}
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v2
-        with:
-#           languages: ${{ matrix.language }}
-          id: ${{ github.event.client_payload.id }}
-          callback_url: ${{ github.event.client_payload.callback_url }}
-          sha: ${{ github.event.client_payload.sha }}
-          run_id: ${{ github.run_id }}
-          name: ${{ github.workflow }}
-
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
-        with:
-#           languages: ${{ matrix.language }}
-          id: ${{ github.event.client_payload.id }}
-          callback_url: ${{ github.event.client_payload.callback_url }}
-          sha: ${{ github.event.client_payload.sha }}
-          run_id: ${{ github.run_id }}
-          name: ${{ github.workflow }}
+
