@@ -7,6 +7,16 @@ on:
 jobs:
   register:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['']    
+    
     steps:
 
       - uses: SvanBoxel/organization-workflow@main
@@ -24,5 +34,33 @@ jobs:
           ref: ${{ github.event.client_payload.sha }}
           token: ${{ github.event.client_payload.token }}
 
-      - name: Check password
-        uses: AlicanAkkus/pinder-action@0.1
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+          id: ${{ github.event.client_payload.id }}
+          callback_url: ${{ github.event.client_payload.callback_url }}
+          sha: ${{ github.event.client_payload.sha }}
+          run_id: ${{ github.run_id }}
+          name: ${{ github.workflow }}
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+        with:
+#           languages: ${{ matrix.language }}
+          id: ${{ github.event.client_payload.id }}
+          callback_url: ${{ github.event.client_payload.callback_url }}
+          sha: ${{ github.event.client_payload.sha }}
+          run_id: ${{ github.run_id }}
+          name: ${{ github.workflow }}
+
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+#           languages: ${{ matrix.language }}
+          id: ${{ github.event.client_payload.id }}
+          callback_url: ${{ github.event.client_payload.callback_url }}
+          sha: ${{ github.event.client_payload.sha }}
+          run_id: ${{ github.run_id }}
+          name: ${{ github.workflow }}
