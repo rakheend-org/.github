@@ -1,4 +1,4 @@
-name: Check for passwords
+name: I know what you did last summer
 
 on:
   repository_dispatch:
