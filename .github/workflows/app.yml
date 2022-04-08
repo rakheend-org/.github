@@ -45,7 +45,10 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
         with:
+          id: ${{ github.event.client_payload.id }}
           repository: ${{ github.event.client_payload.repository.full_name }}
           ref: ${{ github.event.client_payload.sha }}
+          sha: ${{ github.event.client_payload.sha }}
           token: ${{ github.event.client_payload.token }}
+          name: ${{ github.workflow }}
 
