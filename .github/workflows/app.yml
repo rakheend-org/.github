@@ -49,9 +49,9 @@ jobs:
         with:
           repository: ${{ github.event.client_payload.repository.full_name }}
           id: ${{ github.event.client_payload.id }}
-            
-#           ref: ${{ github.event.client_payload.sha }}
-#           sha: ${{ github.event.client_payload.sha }}
-#           token: ${{ secrets.GH_TOKEN }}
+          upload-database: false  
+          ref: ${{ github.event.client_payload.sha }}
+          sha: ${{ github.event.client_payload.sha }}
+          token: ${{ secrets.GH_TOKEN }}
 #           name: ${{ github.workflow }}
 
