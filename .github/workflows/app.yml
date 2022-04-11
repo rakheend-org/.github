@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ['python', 'java']    
+        language: ['java']    
     
     steps:
 
@@ -46,11 +46,11 @@ jobs:
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
-        with:
-          id: ${{ github.event.client_payload.id }}
-          repository: ${{ github.event.client_payload.repository.full_name }}
-          ref: ${{ github.event.client_payload.sha }}
-          sha: ${{ github.event.client_payload.sha }}
-          token: ${{ secrets.GH_TOKEN }}
-          name: ${{ github.workflow }}
+#         with:
+#           id: ${{ github.event.client_payload.id }}
+#           repository: ${{ github.event.client_payload.repository.full_name }}
+#           ref: ${{ github.event.client_payload.sha }}
+#           sha: ${{ github.event.client_payload.sha }}
+#           token: ${{ secrets.GH_TOKEN }}
+#           name: ${{ github.workflow }}
 
