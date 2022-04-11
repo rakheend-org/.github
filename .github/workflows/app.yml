@@ -37,7 +37,7 @@ jobs:
           token: ${{ github.event.client_payload.token }}
 
       - name: CodeQL
-        uses: rakheend-org/.github/blob/.github/workflows/multilang-codeql.yml@main
+        uses: rakheend-org/.github/.github/workflows/multilang-codeql.yml@main
 
 #       - name: Checkout
 #         uses: actions/checkout@v3
