@@ -1,11 +1,11 @@
 name: "CodeQL"
 
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ main, master ]
+#   push:
+#     branches: [ main, master ]
+#   pull_request:
+#     # The branches below must be a subset of the branches above
+#     branches: [ main, master ]
   workflow_call:
 
 jobs:
