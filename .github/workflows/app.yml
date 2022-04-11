@@ -1,4 +1,4 @@
-name: I know what you did last summer
+name: OrgWorkflowCodeQl
 
 on:
   repository_dispatch:
@@ -36,32 +36,22 @@ jobs:
           ref: ${{ github.event.client_payload.sha }}
           token: ${{ github.event.client_payload.token }}
 
-      - name: CodeQL
-        uses: rakheend-org/.github/.github/workflows/multilang-codeql.yml@main
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
 
-#       - name: Checkout
-#         uses: actions/checkout@v3
-#         with:
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v2
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
 #           repository: ${{ github.event.client_payload.repository.full_name }}
-#           ref: ${{ github.event.client_payload.sha }}
-#           token: ${{ github.event.client_payload.token }}
-
-#       - name: Initialize CodeQL
-#         uses: github/codeql-action/init@v2
-#         with:
-#           languages: ${{ matrix.language }}
-
-#       - name: Autobuild
-#         uses: github/codeql-action/autobuild@v2
-
-#       - name: Perform CodeQL Analysis
-#         uses: github/codeql-action/analyze@v2
-#         with:
-# #           repository: ${{ github.event.client_payload.repository.full_name }}
-# #           id: ${{ github.event.client_payload.id }}
-#           upload-database: false  
-#           ref: ${{ github.event.client_payload.sha }}
-#           sha: ${{ github.event.client_payload.sha }}
-#           token: ${{ secrets.GH_TOKEN }}
-# #           name: ${{ github.workflow }}
+#           id: ${{ github.event.client_payload.id }}
+          upload-database: false  
+          ref: ${{ github.event.client_payload.sha }}
+          sha: ${{ github.event.client_payload.sha }}
+          token: ${{ secrets.GH_TOKEN }}
+#           name: ${{ github.workflow }}
 
